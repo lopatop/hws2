@@ -1,5 +1,5 @@
 .sendForm {
-display: flex;
+    display: flex;
     gap: 44px;
     margin-top: 56px
 
@@ -38,6 +38,7 @@ display: flex;
 .button:hover {
 
 }
+
 .button:active {
 
 }
