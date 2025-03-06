@@ -1,11 +1,41 @@
+
+
 .spanBlock {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 22px;
+    align-items: center;
+}
+
+.commonText {
+    font-family: Montserrat, Sans-serif;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 100%;
+
 }
 
 .span {
+    composes: commonText;
+    color: #0080FF;
 }
 
 .input {
+    width: 276px;
+    height: 36px;
+    border: 1px solid #D1D1D1;
+    padding-left: 24px;
+    margin-bottom: 16px;
+    composes: commonText;
+
 }
 
+
 .pen {
+    width: 24px;
+    height: 24px;
+    top: 198px;
+    left: 70px;
+
+
 }
