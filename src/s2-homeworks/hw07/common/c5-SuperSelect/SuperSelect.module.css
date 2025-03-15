@@ -1,4 +1,17 @@
 .select {
+    width: 165px;
+    height: 24px;
+    top: 588px;
+    left: 70px;
+    border-radius: 2px;
+    border-width: 1px;
+    font-family: Montserrat,sans-serif;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 100%;
+    padding-left: 10px;
+
+
 }
 
 .select:focus {
@@ -6,4 +19,5 @@
 
 
 .option:hover {
+
 }
