@@ -2,10 +2,17 @@
 }
 
 .input {
-    width: 372px;
+    padding-left: 12px;
+    width: 468px;
     height: 36px;
-    border-radius: 5px;
+    border-radius: 2px;
     border: 1px solid #D1D1D1;
+    font-family: Roboto,sans-serif;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 100%;
+    vertical-align: middle;
+
 
 }
 
