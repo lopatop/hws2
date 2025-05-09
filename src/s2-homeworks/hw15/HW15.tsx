@@ -5,6 +5,7 @@ import axios from 'axios'
 import SuperPagination from './common/c9-SuperPagination/SuperPagination'
 import {useSearchParams} from 'react-router-dom'
 import SuperSort from './common/c10-SuperSort/SuperSort'
+import {CircularProgress} from "@mui/material";
 
 /*
 * 1 - дописать SuperPagination
@@ -42,7 +43,7 @@ const HW15 = () => {
     const [sort, setSort] = useState('')
     const [page, setPage] = useState(1)
     const [count, setCount] = useState(4)
-    const [idLoading, setLoading] = useState(false)
+    const [idLoading, setLoading] = useState(true)
     const [totalCount, setTotalCount] = useState(100)
     const [searchParams, setSearchParams] = useSearchParams()
     const [techs, setTechs] = useState<TechType[]>([])
@@ -51,20 +52,36 @@ const HW15 = () => {
         setLoading(true)
         getTechs(params)
             .then((res) => {
+                if (res){
+                    setTechs(res.data.techs)
+                    setTotalCount(res.data.totalCount)
+                }
+
                 // делает студент
 
                 // сохранить пришедшие данные
 
                 //
             })
+            .finally(()=>{
+                setLoading(false)
+            })
     }
 
     const onChangePagination = (newPage: number, newCount: number) => {
         // делает студент
+        setPage(newPage)
+        setCount(newCount)
 
         // setPage(
         // setCount(
+        sendQuery({ page: newPage, count: newCount,sort})
 
+        setSearchParams({
+            page: String(newPage),
+            count: String(newCount),
+            sort
+        })
         // sendQuery(
         // setSearchParams(
 
@@ -74,11 +91,12 @@ const HW15 = () => {
     const onChangeSort = (newSort: string) => {
         // делает студент
 
-        // setSort(
-        // setPage(1) // при сортировке сбрасывать на 1 страницу
 
-        // sendQuery(
-        // setSearchParams(
+
+        setSort(newSort)
+        setPage(1)
+        sendQuery( {page:1, count, sort: newSort,})
+        setSearchParams({page:'1', count: String(count), sort: newSort})
 
         //
     }
@@ -107,7 +125,9 @@ const HW15 = () => {
             <div className={s2.hwTitle}>Homework #15</div>
 
             <div className={s2.hw}>
-                {idLoading && <div id={'hw15-loading'} className={s.loading}>Loading...</div>}
+                {idLoading && <div id={'hw15-loading'} className={s.loading}>
+                    <CircularProgress size={80} thickness={4} />
+                </div>}
 
                 <SuperPagination
                     page={page}
@@ -118,12 +138,12 @@ const HW15 = () => {
 
                 <div className={s.rowHeader}>
                     <div className={s.techHeader}>
-                        tech
+                        Tech
                         <SuperSort sort={sort} value={'tech'} onChange={onChangeSort}/>
                     </div>
 
                     <div className={s.developerHeader}>
-                        developer
+                        Developer
                         <SuperSort sort={sort} value={'developer'} onChange={onChangeSort}/>
                     </div>
                 </div>
